@@ -16,12 +16,16 @@
     <input id="w" name="width" class="form-control" type="text">
   </div>
   <div class="form-group">
+    <label for="weight">What is the weight of your package in lbs?</label>
+    <input id="weight" name="weight" class="form-control" type="text">
+  </div>
+  <div class="form-group">
       <label for="shipping">Choose shipping method</label>
-      <select class="form-control" id="shipping">
+      <select name="shipping" class="form-control" id="ship">
         <option>Standard 5-Day Shipping - $5</option>
         <option>Two Day Shipping - $10</option>
         <option>Next Day Shipping - $15</option>
-      </select>    
+      </select>
     </div>
-  <button type="submit" name="button">Calculate Volume</button>
+  <button type="submit" class="btn">Calculate</button>
 </form>

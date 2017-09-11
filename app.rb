@@ -9,17 +9,20 @@ get('/')do
   erb(:input)
 end
 get('/output') do
-  @height = params.fetch("height")
-  @width = params.fetch("width")
-  @length = params.fetch("length")
-  parcel = Parcel.new(@height, @width, @length)
-  parcel.volume
-  binding.pry
-  if @volume < 216
-    @string_to_display = "less than .25 sq. ft"
-  elsif @volume >= 1728
+  @height = params.fetch("height").to_i
+  @width = params.fetch("width").to_i
+  @length = params.fetch("length").to_i
+  @weight = params.fetch("weight").to_i
+  @shipping = params.fetch("shipping")
+  parcel = Parcel.new(@height, @width, @length, @weight, @shipping)
+  @volume = parcel.volume
+  @shipping_cost = parcel.cost_to_ship
+  if parcel.volume <= 216
+    @string_to_display = "Less than .25 sq. ft"
+  elsif parcel.volume >= 1728
     @string_to_display = "Greater than 1 sq. ft"
-  elsif @volume >= 46656
+  elsif parcel.volume >= 46656
     @string_to_display = "Greater than 3 sq. ft"
   end
+  erb(:output)
 end
